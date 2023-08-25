@@ -1,5 +1,5 @@
 import 'package:chtiktok/constants/sizes.dart';
-import 'package:chtiktok/screens/sign_up/sign_up_screen.dart';
+import 'package:chtiktok/features/authentication/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

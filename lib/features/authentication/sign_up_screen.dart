@@ -1,25 +1,30 @@
 import 'package:chtiktok/constants/gaps.dart';
 import 'package:chtiktok/constants/sizes.dart';
-import 'package:chtiktok/widgets/auth_button.dart';
+import 'package:chtiktok/features/authentication/cre_account_screen.dart';
+import 'package:chtiktok/features/authentication/widgets/auth_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
+  void _createAccountTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const CreAccountScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FaIcon(
-              FontAwesomeIcons.twitter,
-              color: Theme.of(context).primaryColor,
-              size: Sizes.size28,
-            ),
-          ],
+        centerTitle: true,
+        title: FaIcon(
+          FontAwesomeIcons.twitter,
+          color: Theme.of(context).primaryColor,
+          size: Sizes.size28,
         ),
       ),
       body: Padding(
@@ -68,10 +73,13 @@ class SignUpScreen extends StatelessWidget {
               ],
             ),
             Gaps.v10,
-            AuthButton(
-              tcolor: Theme.of(context).appBarTheme.backgroundColor!,
-              text: 'Create account',
-              bcolor: Theme.of(context).appBarTheme.foregroundColor!,
+            GestureDetector(
+              onTap: () => _createAccountTap(context),
+              child: AuthButton(
+                tcolor: Theme.of(context).appBarTheme.backgroundColor!,
+                text: 'Create account',
+                bcolor: Theme.of(context).appBarTheme.foregroundColor!,
+              ),
             ),
             Gaps.v32,
             Container(
