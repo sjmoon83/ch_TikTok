@@ -1,6 +1,8 @@
 import 'package:chtiktok/constants/gaps.dart';
 import 'package:chtiktok/constants/sizes.dart';
 import 'package:chtiktok/features/authentication/experience.dart';
+import 'package:chtiktok/features/authentication/widgets/next_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -12,7 +14,21 @@ class CreAccountScreen extends StatefulWidget {
 }
 
 class _CreAccountScreenState extends State<CreAccountScreen> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _birthdayController = TextEditingController();
+
+  String _name = "";
+
+  DateTime initialDate = DateTime.now();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String _checkName(value) {
+    if (value.isEmpty) {
+      return 'This field is required';
+    }
+    return '';
+  }
 
   void _cancelTap() {
     Navigator.of(context).pop();
@@ -24,6 +40,33 @@ class _CreAccountScreenState extends State<CreAccountScreen> {
         builder: (context) => const ExperienceScreen(),
       ),
     );
+  }
+
+  void _onSubmitTap() {
+    _formKey.currentState?.validate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _setTextFieldDate(initialDate);
+    setState(() {
+      _nameController.addListener(() {
+        _name = _nameController.text;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _birthdayController.dispose();
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  void _setTextFieldDate(DateTime date) {
+    final textDate = date.toString().split(" ").first;
+    _birthdayController.value = TextEditingValue(text: textDate);
   }
 
   @override
@@ -49,89 +92,100 @@ class _CreAccountScreenState extends State<CreAccountScreen> {
           size: Sizes.size28,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Sizes.size40),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Gaps.v28,
-            const Text(
-              "Create your account",
-              style: TextStyle(
-                  fontSize: Sizes.size28 + Sizes.size2,
-                  fontWeight: FontWeight.w900),
-            ),
-            Gaps.v28,
-            Form(
-              key: _formKey,
-              child: SizedBox(
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Name',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.size40),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.v28,
+              const Text(
+                "Create your account",
+                style: TextStyle(
+                    fontSize: Sizes.size28 + Sizes.size2,
+                    fontWeight: FontWeight.w900),
+              ),
+              Gaps.v28,
+              Form(
+                key: _formKey,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: InputDecoration(
+                          hintText: 'Name',
+                          suffixIcon: Icon(Icons.check_circle_outline,
+                              color: _name.isEmpty
+                                  ? Colors.grey.shade400
+                                  : Colors.greenAccent),
+                        ),
+                        validator: _checkName,
                       ),
-                      validator: (value) {
-                        return 'I dont know your name';
-                      },
-                    ),
-                    Gaps.v16,
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Phone number or email address',
-                      ),
-                      validator: (value) {
-                        return 'I dont know your Email';
-                      },
-                    ),
-                    Gaps.v16,
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Date of birth',
-                      ),
-                      validator: (value) {
-                        return 'Wrong password';
-                      },
-                    ),
-                    Gaps.v96,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          width: 80,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Sizes.size10,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: Colors.grey.shade200,
-                            ),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Next',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: Sizes.size16,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
+                      Gaps.v16,
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Phone number or email address',
+                          suffixIcon: Icon(
+                            Icons.check_circle_outline,
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+
+                          // 이메일 주소 형식을 검증하는 정규 표현식
+                          bool isValidEmail = RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(value);
+
+                          // 휴대폰 번호 형식을 검증하는 정규 표현식
+                          bool isValidPhoneNumber =
+                              RegExp(r'^\d{10,15}$').hasMatch(value);
+
+                          if (!isValidEmail && !isValidPhoneNumber) {
+                            return 'Please enter a valid email address or phone number';
+                          }
+
+                          return null;
+                        },
+                      ),
+                      Gaps.v16,
+                      TextFormField(
+                        controller: _birthdayController,
+                        enabled: false,
+                        decoration: const InputDecoration(),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
+                      ),
+                      Gaps.v96,
+                      GestureDetector(
+                        onTap: _onSubmitTap,
+                        child: const NextButton(
+                          width: 0.3,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        height: 250,
+        child: CupertinoDatePicker(
+          maximumDate: initialDate,
+          initialDateTime: initialDate,
+          mode: CupertinoDatePickerMode.date,
+          onDateTimeChanged: _setTextFieldDate,
         ),
       ),
     );
