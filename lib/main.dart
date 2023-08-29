@@ -1,5 +1,5 @@
 import 'package:chtiktok/constants/sizes.dart';
-import 'package:chtiktok/features/authentication/sign_up_screen.dart';
+import 'package:chtiktok/features/main_navigation/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class TickTokApp extends StatelessWidget {
                 fontSize: Sizes.size16 + Sizes.size2,
                 fontWeight: FontWeight.w600),
           )),
-      home: const SignUpScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }
