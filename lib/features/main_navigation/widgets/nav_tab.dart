@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class NavTab extends StatelessWidget {
   final IconData icon;
+  final IconData selectedicon;
   final bool isSelected;
   final Function onTap;
 
@@ -11,6 +12,7 @@ class NavTab extends StatelessWidget {
     required this.icon,
     required this.isSelected,
     required this.onTap,
+    required this.selectedicon,
   });
 
   @override
@@ -20,14 +22,15 @@ class NavTab extends StatelessWidget {
         onTap: () => onTap(),
         child: Container(
           child: AnimatedOpacity(
-            opacity: isSelected ? 1 : 0.6,
+            opacity: isSelected ? 1 : 0.4,
             duration: const Duration(
               milliseconds: 200,
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  icon,
+                  isSelected ? selectedicon : icon,
                   size: Sizes.size32,
                   color: Colors.black,
                 ),

@@ -20,49 +20,97 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     });
   }
 
+  final screens = [
+    ListView(
+      children: [
+        Column(
+          children: [
+            Image.network(
+              'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+            ),
+          ],
+        ),
+      ],
+    ),
+    const Center(
+      child: Text(
+        'MagnifyingGlass',
+        style: TextStyle(
+          fontSize: 49,
+        ),
+      ),
+    ),
+    const Center(
+      child: Text(
+        'Square',
+        style: TextStyle(
+          fontSize: 49,
+        ),
+      ),
+    ),
+    const Center(
+      child: Text(
+        'Heart',
+        style: TextStyle(
+          fontSize: 49,
+        ),
+      ),
+    ),
+    const Center(
+      child: Text(
+        'User',
+        style: TextStyle(
+          fontSize: 49,
+        ),
+      ),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: screens[_selectedIndex],
       bottomNavigationBar: BottomAppBar(
-        elevation: 1,
+        elevation: 0,
         color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size20, horizontal: Sizes.size28),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              NavTab(
-                icon: FontAwesomeIcons.house,
-                isSelected: _selectedIndex == 0,
-                onTap: () => _onTap(0),
-              ),
-              Gaps.v5,
-              NavTab(
-                icon: FontAwesomeIcons.magnifyingGlass,
-                isSelected: _selectedIndex == 1,
-                onTap: () => _onTap(1),
-              ),
-              Gaps.v5,
-              NavTab(
-                icon: FontAwesomeIcons.pen,
-                isSelected: _selectedIndex == 2,
-                onTap: () => _onTap(2),
-              ),
-              Gaps.v5,
-              NavTab(
-                icon: FontAwesomeIcons.heart,
-                isSelected: _selectedIndex == 3,
-                onTap: () => _onTap(3),
-              ),
-              Gaps.v5,
-              NavTab(
-                icon: FontAwesomeIcons.user,
-                isSelected: _selectedIndex == 4,
-                onTap: () => _onTap(4),
-              ),
-            ],
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            NavTab(
+              icon: FontAwesomeIcons.house,
+              selectedicon: FontAwesomeIcons.houseUser,
+              isSelected: _selectedIndex == 0,
+              onTap: () => _onTap(0),
+            ),
+            Gaps.v8,
+            NavTab(
+              icon: FontAwesomeIcons.magnifyingGlass,
+              selectedicon: FontAwesomeIcons.magnifyingGlassPlus,
+              isSelected: _selectedIndex == 1,
+              onTap: () => _onTap(1),
+            ),
+            Gaps.v8,
+            NavTab(
+              icon: FontAwesomeIcons.squarePen,
+              selectedicon: FontAwesomeIcons.pen,
+              isSelected: _selectedIndex == 2,
+              onTap: () => _onTap(2),
+            ),
+            Gaps.v8,
+            NavTab(
+              icon: FontAwesomeIcons.heart,
+              selectedicon: FontAwesomeIcons.solidHeart,
+              isSelected: _selectedIndex == 3,
+              onTap: () => _onTap(3),
+            ),
+            Gaps.v8,
+            NavTab(
+              icon: FontAwesomeIcons.user,
+              selectedicon: FontAwesomeIcons.solidUser,
+              isSelected: _selectedIndex == 4,
+              onTap: () => _onTap(4),
+            ),
+          ],
         ),
       ),
     );
