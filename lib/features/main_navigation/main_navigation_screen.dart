@@ -25,6 +25,63 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       children: [
         Column(
           children: [
+            Row(
+              children: [
+                const CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://avatars.githubusercontent.com/u/3612017?v=4'),
+                ),
+                Gaps.h10,
+                Container(
+                  color: Colors.lightBlue,
+                  width: 320,
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('data'),
+                          Row(
+                            children: [
+                              Text('2m'),
+                              Gaps.h5,
+                              Icon(
+                                Icons.more_horiz,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Text('data'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const FaIcon(
+                  FontAwesomeIcons.gripLinesVertical,
+                  size: Sizes.size48,
+                ),
+                SizedBox(
+                  width: 250,
+                  child: Image.network(
+                    'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+                  ),
+                ),
+              ],
+            ),
+            Image.network(
+              'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+            ),
+            Image.network(
+              'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+            ),
+            Image.network(
+              'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+            ),
             Image.network(
               'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
             ),
@@ -71,7 +128,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     return Scaffold(
       body: screens[_selectedIndex],
       bottomNavigationBar: BottomAppBar(
-        elevation: 0,
+        elevation: 1,
         color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
