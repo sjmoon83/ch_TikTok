@@ -1,6 +1,7 @@
 import 'package:chtiktok/constants/gaps.dart';
 import 'package:chtiktok/constants/sizes.dart';
 import 'package:chtiktok/features/main_navigation/widgets/nav_tab.dart';
+import 'package:chtiktok/features/main_navigation/widgets/write_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -20,72 +21,92 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     });
   }
 
+  void _onWriteTap(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => const WriteScreen(),
+    );
+  }
+
   final screens = [
     ListView(
       children: [
-        Column(
-          children: [
-            Row(
-              children: [
-                const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://avatars.githubusercontent.com/u/3612017?v=4'),
-                ),
-                Gaps.h10,
-                Container(
-                  color: Colors.lightBlue,
-                  width: 320,
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('data'),
-                          Row(
-                            children: [
-                              Text('2m'),
-                              Gaps.h5,
-                              Icon(
-                                Icons.more_horiz,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Text('data'),
-                    ],
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              const Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://avatars.githubusercontent.com/u/3612017?v=4'),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const FaIcon(
-                  FontAwesomeIcons.gripLinesVertical,
-                  size: Sizes.size48,
-                ),
-                SizedBox(
-                  width: 250,
-                  child: Image.network(
-                    'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+                  Gaps.h10,
+                  SizedBox(
+                    width: 310,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('data'),
+                            Row(
+                              children: [
+                                Text('2m'),
+                                Gaps.h5,
+                                Icon(
+                                  Icons.more_horiz,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Text('data'),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Image.network(
-              'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
-            ),
-            Image.network(
-              'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
-            ),
-            Image.network(
-              'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
-            ),
-            Image.network(
-              'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
-            ),
-          ],
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Sizes.size6,
+                    ),
+                  ),
+                  const Text(
+                    '|',
+                    style: TextStyle(
+                      backgroundColor: Colors.grey,
+                      color: Colors.grey,
+                      fontSize: 100,
+                    ),
+                  ),
+                  Gaps.h28,
+                  Container(
+                    width: 250,
+                    decoration: const BoxDecoration(),
+                    child: Image.network(
+                      'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+                    ),
+                  ),
+                ],
+              ),
+              Image.network(
+                'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+              ),
+              Image.network(
+                'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+              ),
+              Image.network(
+                'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+              ),
+              Image.network(
+                'https://i.namu.wiki/i/oU0avPQmlPv0p13BPnuEqyzmtGl9SoTArdKVYpb1r5CYXrpUjEqtiurvlFDjpXdOMyDXwIFYpz0x3PgtS92_8A.webp',
+              ),
+            ],
+          ),
         ),
       ],
     ),
@@ -151,7 +172,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               icon: FontAwesomeIcons.squarePen,
               selectedicon: FontAwesomeIcons.pen,
               isSelected: _selectedIndex == 2,
-              onTap: () => _onTap(2),
+              onTap: () => _onWriteTap(context),
             ),
             Gaps.v8,
             NavTab(
