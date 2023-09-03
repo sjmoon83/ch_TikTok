@@ -1,7 +1,9 @@
 import 'package:chtiktok/constants/gaps.dart';
 import 'package:chtiktok/constants/sizes.dart';
+import 'package:chtiktok/features/main_navigation/widgets/magnifyglass_screen.dart';
 import 'package:chtiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:chtiktok/features/main_navigation/widgets/write_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -110,12 +112,55 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
       ],
     ),
-    const Center(
-      child: Text(
-        'MagnifyingGlass',
-        style: TextStyle(
-          fontSize: 49,
+    Scaffold(
+      appBar: AppBar(
+        title: const Column(
+          children: [
+            Text(
+              'Search',
+              style: TextStyle(
+                fontSize: Sizes.size28,
+              ),
+            ),
+            CupertinoSearchTextField(
+              backgroundColor: Colors.white,
+            ),
+          ],
         ),
+      ),
+      body: ListView(
+        children: const [
+          Gaps.v16,
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: MagnicyGlassScreen(),
+          ),
+          Gaps.v16,
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: MagnicyGlassScreen(),
+          ),
+          Gaps.v16,
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: MagnicyGlassScreen(),
+          ),
+          Gaps.v16,
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: MagnicyGlassScreen(),
+          ),
+          Gaps.v16,
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: MagnicyGlassScreen(),
+          ),
+          Gaps.v16,
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: MagnicyGlassScreen(),
+          ),
+        ],
       ),
     ),
     const Center(
